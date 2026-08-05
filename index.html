@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社YaRapaSh | 問いより答え。理由は後から考える。</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#07080c',
+                            dark: '#0e1017',
+                            card: '#151822',
+                            accent: '#ff2e63',
+                            cyan: '#00f5d4',
+                            purple: '#7b2cbf',
+                            light: '#f8fafc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glitch': 'glitch 1s infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07080c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #252a38;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff2e63;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #00f5d4 0%, #ff2e63 50%, #7b2cbf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            border: 1px solid transparent;
+            background-image: linear-gradient(#151822, #151822), linear-gradient(135deg, #00f5d4, #ff2e63);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        .cyber-glow {
+            box-shadow: 0 0 25px rgba(255, 46, 99, 0.25);
+        }
+        .cyber-glow-cyan {
+            box-shadow: 0 0 25px rgba(0, 245, 212, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-slate-100 font-sans antialiased selection:bg-brand-accent selection:text-white overflow-x-hidden">
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-brand-black/80 border-b border-slate-800/60 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-brand-accent via-brand-purple to-brand-cyan p-[2px] transform group-hover:rotate-12 transition-transform duration-300">
+                    <div class="w-full h-full bg-brand-black rounded-[6px] flex items-center justify-center font-black text-lg text-white">
+                        Y
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-black text-xl tracking-wider text-white group-hover:text-brand-cyan transition-colors">YaRapaSh</span>
+                    <span class="text-[9px] tracking-widest text-slate-400 font-mono uppercase">Seek Answer First</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#philosophy" class="hover:text-brand-cyan transition-colors">マニフェスト</a>
+                <a href="#services" class="hover:text-brand-cyan transition-colors">事業内容</a>
+                <a href="#product" class="hover:text-brand-cyan transition-colors">プロダクト</a>
+                <a href="#cases" class="hover:text-brand-cyan transition-colors">トラックレコード</a>
+                <a href="#company" class="hover:text-brand-cyan transition-colors">会社概要</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contact" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-brand-accent to-brand-purple hover:opacity-90 transition-all transform hover:scale-105 shadow-lg shadow-brand-accent/20">
+                    即時相談・依頼 <i class="fa-solid font-bold fa-bolt ml-1"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white text-2xl p-2 focus:outline-none" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-slate-800 px-6 py-6 space-y-4">
+            <a href="#philosophy" class="block text-slate-200 font-medium hover:text-brand-cyan">マニフェスト</a>
+            <a href="#services" class="block text-slate-200 font-medium hover:text-brand-cyan">事業内容</a>
+            <a href="#product" class="block text-slate-200 font-medium hover:text-brand-cyan">プロダクト</a>
+            <a href="#cases" class="block text-slate-200 font-medium hover:text-brand-cyan">トラックレコード</a>
+            <a href="#company" class="block text-slate-200 font-medium hover:text-brand-cyan">会社概要</a>
+            <a href="#contact" class="block w-full text-center py-3 rounded-lg bg-brand-accent text-white font-bold">即時コンタクト</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-b from-brand-black via-brand-dark to-brand-black">
+        <!-- Background Canvas for Particles -->
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-40"></canvas>
+        
+        <!-- Glow Orbs -->
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10 py-20">
+            <!-- Top Tag -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-xs sm:text-sm mb-8 animate-float">
+                <span class="w-2 h-2 rounded-full bg-brand-cyan"></span>
+                <span class="font-mono uppercase tracking-widest text-brand-cyan">Bias For Action Manifesto</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6">
+                問いより<span class="gradient-text">答え。</span><br>
+                <span class="text-slate-200 text-3xl sm:text-5xl md:text-6xl lg:text-7xl">理由は後から考える。</span>
+            </h1>
+
+            <!-- Lead Paragraph -->
+            <p class="max-w-3xl mx-auto text-slate-400 text-base sm:text-lg md:text-xl font-normal leading-relaxed mb-10">
+                議論を重ねる時間に価値はない。私たちは「まず動く答え」を創り出し、現場と市場のフィードバックから後付けで勝利の法則を証明する、超高速型イノベーションカンパニーです。
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-slate-900 bg-brand-cyan hover:bg-emerald-300 transition-all transform hover:-translate-y-1 cyber-glow-cyan flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-bolt"></i> 今すぐ「答え」を相談する
+                </a>
+                <a href="#philosophy" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-white bg-slate-800/80 border border-slate-700 hover:bg-slate-700 transition-all flex items-center justify-center gap-2">
+                    思想とマニフェスト <i class="fa-solid fa-arrow-down text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Fast Metrics Preview -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-800/80">
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
+                    <div class="text-2xl sm:text-4xl font-black text-brand-cyan font-mono" id="stat-speed">48h</div>
+                    <div class="text-xs text-slate-400 mt-1">企画〜初速ローンチ</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
+                    <div class="text-2xl sm:text-4xl font-black text-brand-accent font-mono" id="stat-hypothesis">10x</div>
+                    <div class="text-xs text-slate-400 mt-1">仮説検証スピード比</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-900/50">
+                    <div class="text-2xl sm:text-4xl font-black text-brand-purple font-mono">0.0 sec</div>
+                    <div class="text-xs text-slate-400 mt-1">「議論だけ」の無駄時間</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
+                    <div class="text-2xl sm:text-4xl font-black text-emerald-400 font-mono">100%</div>
+                    <div class="text-xs text-slate-400 mt-1">成果・結果優先主義</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manifesto / Core Philosophy Section -->
+    <section id="philosophy" class="py-24 bg-brand-dark relative border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-bold tracking-widest text-brand-accent uppercase mb-2">OUR MANIFESTO</h2>
+                <p class="text-3xl sm:text-5xl font-black text-white">なぜ「答えが先」なのか？</p>
+                <p class="text-slate-400 mt-4 text-sm sm:text-base">
+                    正解のない現代において、「正しい問い」を探す議論は時間の浪費になりがちです。<br class="hidden sm:inline">
+                    YaRapaShは、現実を動かす「プロトタイプ（答え）」を最速で投下し、そこから得られた事実に基いて理由を構築します。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-slate-800 hover:border-brand-cyan/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-brand-cyan text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 font-bold">PRINCIPLE 01</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">仮説爆速投下 (Answer First)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        完璧な企画書を待たない。明日動くベータ版・施策（答え）を現場に投げ込み、実際の反応こそを真実とする。
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-slate-800 hover:border-brand-accent/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-brand-accent text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 font-bold">PRINCIPLE 02</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">事後証明エンジン (Reason Later)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        出た結果から「なぜうまくいったのか」「なぜ失敗したのか」を逆算して解析。理屈は常に後から追いついてくる。
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-8 rounded-2xl bg-brand-card border border-slate-800 hover:border-brand-purple/50 transition-all group">
+                    <div class="w-14 h-14 rounded-xl bg-slate-800 flex items-center justify-center text-brand-purple text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500 font-bold">PRINCIPLE 03</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-3">評論家ゼロ文化 (Action Only)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        「なぜできないか」を語る評論家はいらない。手を動かし、形を作り、結果で語るプロフェッショナル集団。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-brand-dark border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-brand-cyan font-mono text-xs font-bold tracking-widest uppercase">OUR SERVICES</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">事業内容</h2>
+                </div>
+                <p class="text-slate-400 max-w-md mt-4 md:mt-0 text-sm">
+                    思考実験で時間を無駄にしない。具現化・プロトタイピング・スピードマーケティングを主軸とした最速ソリューション。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-brand-black rounded-2xl p-8 border border-slate-800 relative overflow-hidden group hover:border-brand-cyan transition-all">
+                    <div class="text-4xl text-brand-cyan mb-6">
+                        <i class="fa-solid fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">超高速事業立ち上げ (Ultra-Speed Launch)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        新規事業の企画立案からランディングページ構築、MVP（実用最小限の製品）の完成までを最短48時間で完了。「動くモノ」を真っ先に市場に投入します。
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> MVPプロトタイピング</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> LP & アプリ爆速構築</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> 初速トラクションテスト</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-brand-black rounded-2xl p-8 border border-slate-800 relative overflow-hidden group hover:border-brand-accent transition-all">
+                    <div class="text-4xl text-brand-accent mb-6">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">結果先行型システム開発 (Result-First DX)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        要件定義に何ヶ月もかけない。最先端AIとノーコード・ローコード・モダンフレームワークをフル活用し、数日で現場が使えるツールを納品。
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent"></i> 生成AI統合ワークフロー</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent"></i> 即効型社内自動化ツール</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-accent"></i> 運用しながらアップデート</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-brand-black rounded-2xl p-8 border border-slate-800 relative overflow-hidden group hover:border-brand-purple transition-all">
+                    <div class="text-4xl text-brand-purple mb-6">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">後付け証明グロース (Reason-Later Growth)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        広告施策を大量並列実行し、最も反応の良かったクリエイティブとターゲット層から「売れた理由」を逆算データ解析。成果の確実化を図ります。
+                    </p>
+                    <ul class="text-xs text-slate-300 space-y-2 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple"></i> 多重A/Bテスト爆撃</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple"></i> 逆引きデータアナリティクス</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-purple"></i> 勝率高いモデルのスケール化</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flagship Product Section -->
+    <section id="product" class="py-24 bg-brand-black border-t border-slate-800 relative overflow-hidden">
+        <!-- Accent Orbs for Product -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-accent/20 via-brand-purple/20 to-brand-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-cyan font-mono text-xs font-bold tracking-widest uppercase">FLAGSHIP PRODUCT</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">商品紹介</h2>
+                <p class="text-slate-400 mt-4 text-sm sm:text-base">
+                    思考の迷いを一瞬で吹き飛ばし、体が勝手に「答え」を叩き出す超行動型エナジー飲料。
+                </p>
+            </div>
+
+            <!-- Product Showcase Card -->
+            <div class="bg-gradient-to-br from-slate-900/90 via-brand-card to-slate-900/90 rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl relative overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Product Visual Mockup -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+                    <!-- Can / Bottle Container with Glowing Aura -->
+                    <div class="relative group cursor-pointer">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-brand-cyan via-brand-accent to-brand-purple rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+                        
+                        <!-- Realistic Stylized Can Graphic -->
+                        <div class="relative w-64 h-[380px] bg-gradient-to-b from-slate-800 via-slate-900 to-black rounded-3xl border-2 border-brand-cyan/60 p-6 flex flex-col justify-between items-center shadow-2xl overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
+                            <!-- Metallic Shine Effect -->
+                            <div class="absolute top-0 left-0 right-0 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none transform -skew-x-12"></div>
+                            
+                            <!-- Can Header -->
+                            <div class="w-full flex justify-between items-center text-[10px] font-mono text-brand-cyan font-bold tracking-widest">
+                                <span>ANSWER 100%</span>
+                                <span>355ml</span>
+                            </div>
+
+                            <!-- Can Center Symbol & Name -->
+                            <div class="text-center my-auto">
+                                <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-tr from-brand-accent via-brand-purple to-brand-cyan flex items-center justify-center shadow-lg shadow-brand-accent/50 animate-bounce">
+                                    <span class="text-4xl font-black text-slate-950 font-mono">!</span>
+                                </div>
+                                <h3 class="text-xl font-black text-white tracking-wider uppercase leading-none mb-1">
+                                    エクスクラメ<br><span class="gradient-text text-2xl">ショニウム</span>
+                                </h3>
+                                <p class="text-[10px] font-mono text-slate-400 tracking-widest mt-1">EXCLAMATIONIUM EX-100</p>
+                            </div>
+
+                            <!-- Can Footer Tag -->
+                            <div class="w-full text-center py-1.5 rounded-lg bg-brand-accent/20 border border-brand-accent/40 text-brand-accent font-mono text-[11px] font-bold">
+                                思考時間 0.00 SEC
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-center gap-2 text-xs font-mono text-slate-400">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>即時出荷対応 / 法人一括配送可能</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Product Description & Features -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-mono font-bold mb-3">
+                            <i class="fa-solid fa-fire"></i> 新発売・超行動特化型エナジー
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-black text-white">
+                            答え100%ドリンク<br>
+                            <span class="gradient-text">「エクスクラメショニウム」</span>
+                        </h3>
+                        <p class="text-slate-300 mt-4 text-sm sm:text-base leading-relaxed">
+                            「なぜやるのか」を長々と会議で話し合う時間は終わりました。<br>
+                            一口飲めば、思考麻痺を全自動クリア。理由を考える前に直感と行動力が極限覚醒し、今なすべき「答え」をダイレクトに実行に移します。
+                        </p>
+                    </div>
+
+                    <!-- Key Spec Grid -->
+                    <div class="grid grid-cols-3 gap-3 py-4 border-y border-slate-800">
+                        <div class="bg-brand-black/60 p-3 rounded-xl border border-slate-800 text-center">
+                            <div class="text-xs text-slate-400 font-mono">純度100%</div>
+                            <div class="text-lg sm:text-xl font-black text-brand-cyan mt-0.5">即決エキス</div>
+                        </div>
+                        <div class="bg-brand-black/60 p-3 rounded-xl border border-slate-800 text-center">
+                            <div class="text-xs text-slate-400 font-mono">迷い削減率</div>
+                            <div class="text-lg sm:text-xl font-black text-brand-accent mt-0.5">99.9%</div>
+                        </div>
+                        <div class="bg-brand-black/60 p-3 rounded-xl border border-slate-800 text-center">
+                            <div class="text-xs text-slate-400 font-mono">フレーバー</div>
+                            <div class="text-lg sm:text-xl font-black text-brand-purple mt-0.5">電撃ソーダ</div>
+                        </div>
+                    </div>
+
+                    <!-- Main Advantages List -->
+                    <div class="space-y-3 text-sm text-slate-300">
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">✓</div>
+                            <div>
+                                <strong class="text-white">高濃度エクスクラメショニウム配合</strong>：ブレインロックを解除し、ひらめき（！）をそのまま指先と行動へ伝達。
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-accent/20 text-brand-accent flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">✓</div>
+                            <div>
+                                <strong class="text-white">後回し型コンディショニング成分</strong>：「理由は後から考える」を実現するアクティブアミノ酸群を最適バランシング。
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-purple/20 text-brand-purple flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">✓</div>
+                            <div>
+                                <strong class="text-white">シュガーゼロ・カロリーオフ</strong>：長時間のアジャイル開発やスプリント業務でもパフォーマンスを崩さない。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-brand-cyan via-emerald-400 to-brand-cyan hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-cyan/20">
+                            <i class="fa-solid fa-cart-shopping"></i> サンプル請求・注文する
+                        </a>
+                        <span class="text-xs font-mono text-slate-400">※ 法人・開発チーム向け一括導入プラン受付中</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies / Track Record Section -->
+    <section id="cases" class="py-24 bg-brand-black border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-purple font-mono text-xs font-bold tracking-widest uppercase">TRACK RECORD</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">「答え先行」の実績例</h2>
+                <p class="text-slate-400 mt-4 text-sm sm:text-base">
+                    会議でアイデアを練り潰す前にプロダクトを出したプロジェクトの実績です。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Case 1 -->
+                <div class="rounded-2xl bg-brand-card p-8 border border-slate-800">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-mono font-bold">開発期間: 72時間</span>
+                        <span class="text-xs text-slate-500 font-mono">CASE 01</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">SaaSサービスにおけるプロトタイプ事前予約販売</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        仕様決定会議を一切開かず、ランディングページとイメージ動画だけを3日で公開。予約注文数が目標値を超えたため本開発に着手。開発リソースの無駄を100%カット。
+                    </p>
+                    <div class="flex items-center gap-6 pt-4 border-t border-slate-800 font-mono">
+                        <div>
+                            <div class="text-xs text-slate-500">事前予約数</div>
+                            <div class="text-xl font-bold text-brand-cyan">1,400+ 件</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500">検証コスト削減</div>
+                            <div class="text-xl font-bold text-brand-accent">85% DOWN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="rounded-2xl bg-brand-card p-8 border border-slate-800">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20 text-xs font-mono font-bold">開発期間: 24時間</span>
+                        <span class="text-xs text-slate-500 font-mono">CASE 02</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">店舗向け自動予約＆問合せLINE bot構築</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        詳細な要件定義書なしで初日にモックを作成し現場スタッフが運用テスト。実際に動かした不満点から要件を逆算抽出。1週間で本稼働化。
+                    </p>
+                    <div class="flex items-center gap-6 pt-4 border-t border-slate-800 font-mono">
+                        <div>
+                            <div class="text-xs text-slate-500">応対時間</div>
+                            <div class="text-xl font-bold text-brand-cyan font-mono">70% 削減</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500">本稼働まで</div>
+                            <div class="text-xl font-bold text-brand-purple font-mono">7 Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Profile Section -->
+    <section id="company" class="py-24 bg-brand-dark border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-cyan font-mono text-xs font-bold tracking-widest uppercase">ABOUT US</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">会社概要</h2>
+            </div>
+
+            <div class="rounded-2xl bg-brand-black border border-slate-800 overflow-hidden">
+                <dl class="divide-y divide-slate-800 text-sm">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 p-6">
+                        <dt class="font-bold text-slate-400 font-mono">社名</dt>
+                        <dd class="sm:col-span-2 font-bold text-white text-base">株式会社YaRapaSh（ヤラパッシュ）</dd>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 p-6">
+                        <dt class="font-bold text-slate-400 font-mono">企業理念 (Slogan)</dt>
+                        <dd class="sm:col-span-2 text-brand-cyan font-bold">問いより答えを求める。理由は後から考える。</dd>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 p-6">
+                        <dt class="font-bold text-slate-400 font-mono">代表者</dt>
+                        <dd class="sm:col-span-2 text-slate-200">代表取締役 CEO　即答 創（Sokuto Hajime）</dd>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 p-6">
+                        <dt class="font-bold text-slate-400 font-mono">事業内容</dt>
+                        <dd class="sm:col-span-2 text-slate-300 leading-relaxed">
+                            ・超高速MVP開発・新規事業プロトタイピング<br>
+                            ・生成AIおよびアジャイルシステム導入支援<br>
+                            ・データ駆動型後付けグロースマーケティング<br>
+                            ・結果重視のコンサルティング・アクション設計
+                        </dd>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 p-6">
+                        <dt class="font-bold text-slate-400 font-mono">行動指針 (Core Values)</dt>
+                        <dd class="sm:col-span-2 text-slate-300">
+                            1. 議論の前にプロトタイプを出せ<br>
+                            2. 理由の言い訳より、事実の数字で語れ<br>
+                            3. 迷ったら、まず一番インパクトの大きい答えを実行せよ
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-brand-black relative border-t border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-brand-accent font-mono text-xs font-bold tracking-widest uppercase">FAST CONTACT</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">即答お問い合わせ</h2>
+                <p class="text-slate-400 mt-2 text-sm">
+                    長い前置きは不要です。まず作りたいモノ・解決したいゴールを教えてください。
+                </p>
+            </div>
+
+            <div class="bg-brand-card rounded-2xl p-8 border border-slate-800 shadow-xl">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="contact-name" class="block text-xs font-mono text-slate-400 mb-2 font-bold">お名前 / 貴社名 *</label>
+                            <input type="text" id="contact-name" required placeholder="株式会社サンプル / 山田 太郎" 
+                                class="w-full bg-brand-black border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                        <div>
+                            <label for="contact-email" class="block text-xs font-mono text-slate-400 mb-2 font-bold">メールアドレス *</label>
+                            <input type="email" id="contact-email" required placeholder="name@company.com" 
+                                class="w-full bg-brand-black border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="contact-message" class="block text-xs font-mono text-slate-400 mb-2 font-bold">求めている「答え」（案件概要・相談内容） *</label>
+                        <textarea id="contact-message" rows="4" required placeholder="例: 新規事業のLPと診断ツールを3日以内に作りたい。概算の見積もりと最速の着手スケジュールが欲しい。" 
+                            class="w-full bg-brand-black border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-accent transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-brand-accent via-brand-purple to-brand-cyan text-white font-bold text-base rounded-xl hover:opacity-90 transition-all cyber-glow">
+                        最速で答えを求める（送信） <i class="fa-solid fa-paper-plane ml-2"></i>
+                    </button>
+                </form>
+
+                <!-- Feedback Message -->
+                <div id="contact-success" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm text-center font-bold">
+                    <i class="fa-solid fa-circle-check mr-2"></i> 送信完了しました。担当者より爆速で初期ソリューション（答え）をご返信いたします。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black border-t border-slate-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-brand-accent flex items-center justify-center font-black text-white text-sm">
+                    Y
+                </div>
+                <span class="font-black text-lg text-white">株式会社YaRapaSh</span>
+            </div>
+
+            <div class="text-xs text-slate-500 text-center md:text-left">
+                「問いより答えを求める　理由は後から考える」
+            </div>
+
+            <div class="text-xs text-slate-600 font-mono">
+                &copy; 2026 YaRapaSh Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions & Animations -->
+    <script>
+        
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if(mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = "fa-solid fa-bars";
+            } else {
+                menuIcon.className = "fa-solid fa-xmark";
+            }
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = "fa-solid fa-bars";
+            });
+        });
+
+        // Background Particle Canvas Logic
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5;
+                this.color = Math.random() > 0.5 ? '#00f5d4' : '#ff2e63';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor(window.innerWidth / 15), 80);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                p.update();
+                p.draw();
+            }
+            // Draw connecting lines for nearby particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.15 - dist / 120 * 0.15})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // Contact Form Handling
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const successBox = document.getElementById('contact-success');
+            const form = document.getElementById('contact-form');
+
+            form.style.opacity = '0.5';
+            form.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                successBox.classList.remove('hidden');
+                form.reset();
+                form.style.opacity = '1';
+                form.style.pointerEvents = 'auto';
+            }, 500);
+        }
+    </script>
+</body>
+</html>
