@@ -34,7 +34,6 @@
                     },
                     animation: {
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'glitch': 'glitch 1s infinite',
                         'float': 'float 3s ease-in-out infinite',
                     },
                     keyframes: {
@@ -67,12 +66,6 @@
             background: linear-gradient(135deg, #00f5d4 0%, #ff2e63 50%, #7b2cbf 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-        .gradient-border {
-            border: 1px solid transparent;
-            background-image: linear-gradient(#151822, #151822), linear-gradient(135deg, #00f5d4, #ff2e63);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
         }
         .cyber-glow {
             box-shadow: 0 0 25px rgba(255, 46, 99, 0.25);
@@ -173,14 +166,14 @@
             <!-- Fast Metrics Preview -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-800/80">
                 <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
-                    <div class="text-2xl sm:text-4xl font-black text-brand-cyan font-mono" id="stat-speed">48h</div>
+                    <div class="text-2xl sm:text-4xl font-black text-brand-cyan font-mono">48h</div>
                     <div class="text-xs text-slate-400 mt-1">企画〜初速ローンチ</div>
                 </div>
                 <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
-                    <div class="text-2xl sm:text-4xl font-black text-brand-accent font-mono" id="stat-hypothesis">10x</div>
+                    <div class="text-2xl sm:text-4xl font-black text-brand-accent font-mono">10x</div>
                     <div class="text-xs text-slate-400 mt-1">仮説検証スピード比</div>
                 </div>
-                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-900/50">
+                <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/50">
                     <div class="text-2xl sm:text-4xl font-black text-brand-purple font-mono">0.0 sec</div>
                     <div class="text-xs text-slate-400 mt-1">「議論だけ」の無駄時間</div>
                 </div>
@@ -311,7 +304,6 @@
 
     <!-- Flagship Product Section -->
     <section id="product" class="py-24 bg-brand-black border-t border-slate-800 relative overflow-hidden">
-        <!-- Accent Orbs for Product -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-accent/20 via-brand-purple/20 to-brand-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -328,22 +320,18 @@
                 
                 <!-- Left Column: Product Visual Mockup -->
                 <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
-                    <!-- Can / Bottle Container with Glowing Aura -->
                     <div class="relative group cursor-pointer">
                         <div class="absolute -inset-4 bg-gradient-to-r from-brand-cyan via-brand-accent to-brand-purple rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition duration-500 animate-pulse"></div>
                         
                         <!-- Realistic Stylized Can Graphic -->
                         <div class="relative w-64 h-[380px] bg-gradient-to-b from-slate-800 via-slate-900 to-black rounded-3xl border-2 border-brand-cyan/60 p-6 flex flex-col justify-between items-center shadow-2xl overflow-hidden transform group-hover:scale-105 transition-transform duration-300">
-                            <!-- Metallic Shine Effect -->
                             <div class="absolute top-0 left-0 right-0 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none transform -skew-x-12"></div>
                             
-                            <!-- Can Header -->
                             <div class="w-full flex justify-between items-center text-[10px] font-mono text-brand-cyan font-bold tracking-widest">
                                 <span>ANSWER 100%</span>
                                 <span>355ml</span>
                             </div>
 
-                            <!-- Can Center Symbol & Name -->
                             <div class="text-center my-auto">
                                 <div class="w-20 h-20 mx-auto mb-3 rounded-full bg-gradient-to-tr from-brand-accent via-brand-purple to-brand-cyan flex items-center justify-center shadow-lg shadow-brand-accent/50 animate-bounce">
                                     <span class="text-4xl font-black text-slate-950 font-mono">!</span>
@@ -354,7 +342,6 @@
                                 <p class="text-[10px] font-mono text-slate-400 tracking-widest mt-1">EXCLAMATIONIUM EX-100</p>
                             </div>
 
-                            <!-- Can Footer Tag -->
                             <div class="w-full text-center py-1.5 rounded-lg bg-brand-accent/20 border border-brand-accent/40 text-brand-accent font-mono text-[11px] font-bold">
                                 思考時間 0.00 SEC
                             </div>
@@ -363,11 +350,11 @@
 
                     <div class="mt-6 flex items-center gap-2 text-xs font-mono text-slate-400">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>即時出荷対応 / 法人一括配送可能</span>
+                        <span>即時出荷対応 / 架空組織一括配送可能</span>
                     </div>
                 </div>
 
-                <!-- Right Column: Product Description & Features -->
+                <!-- Right Column: Product Description -->
                 <div class="lg:col-span-7 space-y-6">
                     <div>
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-mono font-bold mb-3">
@@ -383,7 +370,6 @@
                         </p>
                     </div>
 
-                    <!-- Key Spec Grid -->
                     <div class="grid grid-cols-3 gap-3 py-4 border-y border-slate-800">
                         <div class="bg-brand-black/60 p-3 rounded-xl border border-slate-800 text-center">
                             <div class="text-xs text-slate-400 font-mono">純度100%</div>
@@ -399,7 +385,6 @@
                         </div>
                     </div>
 
-                    <!-- Main Advantages List -->
                     <div class="space-y-3 text-sm text-slate-300">
                         <div class="flex items-start gap-3">
                             <div class="w-6 h-6 rounded-full bg-brand-cyan/20 text-brand-cyan flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">✓</div>
@@ -413,20 +398,12 @@
                                 <strong class="text-white">後回し型コンディショニング成分</strong>：「理由は後から考える」を実現するアクティブアミノ酸群を最適バランシング。
                             </div>
                         </div>
-                        <div class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-brand-purple/20 text-brand-purple flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">✓</div>
-                            <div>
-                                <strong class="text-white">シュガーゼロ・カロリーオフ</strong>：長時間のアジャイル開発やスプリント業務でもパフォーマンスを崩さない。
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- Call to Action Buttons -->
                     <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
                         <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-slate-950 bg-gradient-to-r from-brand-cyan via-emerald-400 to-brand-cyan hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-cyan/20">
                             <i class="fa-solid fa-cart-shopping"></i> サンプル請求・注文する
                         </a>
-                        <span class="text-xs font-mono text-slate-400">※ 法人・開発チーム向け一括導入プラン受付中</span>
                     </div>
                 </div>
 
@@ -524,14 +501,6 @@
                             ・結果重視のコンサルティング・アクション設計
                         </dd>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 p-6">
-                        <dt class="font-bold text-slate-400 font-mono">行動指針 (Core Values)</dt>
-                        <dd class="sm:col-span-2 text-slate-300">
-                            1. 議論の前にプロトタイプを出せ<br>
-                            2. 理由の言い訳より、事実の数字で語れ<br>
-                            3. 迷ったら、まず一番インパクトの大きい答えを実行せよ
-                        </dd>
-                    </div>
                 </dl>
             </div>
         </div>
@@ -549,17 +518,25 @@
             </div>
 
             <div class="bg-brand-card rounded-2xl p-8 border border-slate-800 shadow-xl">
-                <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                <form id="contact-form" onsubmit="handleContactSubmit(event)" novalidate>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="contact-name" class="block text-xs font-mono text-slate-400 mb-2 font-bold">お名前 / 貴社名 *</label>
-                            <input type="text" id="contact-name" required placeholder="株式会社サンプル / 山田 太郎" 
+                            <input type="text" id="contact-name" required placeholder="株式会社サンプル / 田中 太郎" 
                                 class="w-full bg-brand-black border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-accent transition-colors">
                         </div>
                         <div>
-                            <label for="contact-email" class="block text-xs font-mono text-slate-400 mb-2 font-bold">メールアドレス *</label>
-                            <input type="email" id="contact-email" required placeholder="name@company.com" 
+                            <label for="contact-email" class="block text-xs font-mono text-slate-400 mb-2 font-bold">
+                                メールアドレス * <span class="text-brand-cyan text-[10px] ml-1">(.wac専用)</span>
+                            </label>
+                            <input type="text" id="contact-email" required placeholder="member@yarapash.wac" 
                                 class="w-full bg-brand-black border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-accent transition-colors">
+                            <p class="text-[11px] text-slate-500 mt-1">※WACドメイン（<span class="text-brand-cyan font-mono font-bold">.wac</span>）のみ受付可能です。</p>
+                            <!-- Error Message Display -->
+                            <div id="email-error" class="hidden text-brand-accent text-xs font-bold mt-1.5 flex items-center gap-1">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <span id="email-error-text">WACにより開発されたメール（.wac）のメールアドレスを入力してください。（例: name@yarapash.wac）</span>
+                            </div>
                         </div>
                     </div>
 
@@ -597,14 +574,12 @@
             </div>
 
             <div class="text-xs text-slate-600 font-mono">
-                &copy; 2026 YaRapaSh Inc. All rights reserved.
+                &copy; 2045 YaRapaSh Inc. All rights reserved.
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Interactions & Animations -->
     <script>
-        
         // Mobile menu toggle
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -698,12 +673,34 @@
         }
         animateCanvas();
 
-        // Contact Form Handling
+        // Custom Validation Logic for .wac Domain Email
         function handleContactSubmit(e) {
             e.preventDefault();
+            
+            const emailInput = document.getElementById('contact-email');
+            const emailError = document.getElementById('email-error');
             const successBox = document.getElementById('contact-success');
             const form = document.getElementById('contact-form');
 
+            const emailVal = emailInput.value.trim().toLowerCase();
+
+            // Check if email ends with .wac and contains @
+            const isWacEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.wac$/i.test(emailVal);
+
+            if (!isWacEmail) {
+                // Show Error and highlight input
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-brand-accent');
+                emailInput.classList.remove('border-slate-700');
+                return;
+            } else {
+                // Clear Error
+                emailError.classList.add('hidden');
+                emailInput.classList.remove('border-brand-accent');
+                emailInput.classList.add('border-slate-700');
+            }
+
+            // Simulated Fast Submit Response
             form.style.opacity = '0.5';
             form.style.pointerEvents = 'none';
 
